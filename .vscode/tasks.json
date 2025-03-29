@@ -1,0 +1,26 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "gradle",
+            "id": "/Users/spectra/Desktop/QueNoTeTumbenbuildQueNoTeTumben",
+            "script": "build",
+            "description": "Assembles and tests this project.",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "project": "QueNoTeTumben",
+            "buildFile": "/Users/spectra/Desktop/QueNoTeTumben/build.gradle",
+            "rootProject": "QueNoTeTumben",
+            "projectFolder": "/Users/spectra/Desktop/QueNoTeTumben",
+            "workspaceFolder": "/Users/spectra/Desktop/QueNoTeTumben",
+            "args": "",
+            "javaDebug": false,
+            "problemMatcher": [
+                "$gradle"
+            ],
+            "label": "gradle: build"
+        }
+    ]
+}

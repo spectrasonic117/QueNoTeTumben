@@ -22,6 +22,10 @@ repositories {
         name = "aikar"
         url = "https://repo.aikar.co/content/groups/aikar/"
     }
+    maven {
+        name = "placeholderapi"
+        url ="https://repo.extendedclip.com/content/repositories/placeholderapi/"
+    }
 }
 
 dependencies {
@@ -41,8 +45,7 @@ dependencies {
     implementation "net.kyori:adventure-api:4.19.0"
     // implementation "net.kyori:adventure-text-serializer-legacy:4.19.0" // Legacy
 
-    // Paperweight
-    // paperweight.paperDevBundle("1.21.1-R0.1-SNAPSHOT")
+    compileOnly "me.clip:placeholderapi:2.11.6"
 }
 
 shadowJar {

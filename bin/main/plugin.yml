@@ -1,0 +1,5 @@
+name: QueNoTeTumben
+version: '${version}'
+main: com.spectrasonic.QueNoTeTumben.Main
+api-version: '1.21'
+authors: [Spectrasonic]

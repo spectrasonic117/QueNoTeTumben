@@ -29,5 +29,17 @@ public class PointsManager {
     private void executeCommand(String command, String screen_point) {
         Bukkit.getScheduler().runTask(plugin, () -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command));
         Bukkit.getScheduler().runTask(plugin, () -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), screen_point));
-    }
-}
+    }}
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    

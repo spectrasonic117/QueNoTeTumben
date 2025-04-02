@@ -24,6 +24,8 @@ public class GameCommand extends BaseCommand {
         @Subcommand("start")
         @Description("Inicia el minijuego")
         public void onStart(CommandSender sender) {
+            Player player = (Player) sender;
+            player.performCommand("id false");
             gameManager.startGame();
             MessageUtils.sendMessage(sender, "<green>¡El juego ha sido iniciado correctamente!");
         }
@@ -31,6 +33,8 @@ public class GameCommand extends BaseCommand {
         @Subcommand("stop")
         @Description("Detiene el minijuego")
         public void onStop(CommandSender sender) {
+            Player player = (Player) sender;
+            player.performCommand("id true");
             gameManager.stopGame();
             MessageUtils.sendMessage(sender, "<red>El juego ha sido detenido.");
         }

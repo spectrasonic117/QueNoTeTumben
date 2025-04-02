@@ -96,9 +96,9 @@ public class GameManager {
             // Quitar picos y restaurar jugadores
             for (Player player : Bukkit.getOnlinePlayers()) {
                 player.getInventory().remove(Material.DIAMOND_PICKAXE);
-                player.getInventory().remove(Material.BLACK_CONCRETE);
-                player.getInventory().remove(Material.WHITE_CONCRETE);
-                player.getInventory().remove(Material.TERRACOTTA);
+                player.getInventory().remove(Material.END_STONE);
+                player.getInventory().remove(Material.SMOOTH_RED_SANDSTONE);
+                player.getInventory().remove(Material.NETHERRACK);
                 player.teleport(teleportLocation);
                 player.setGameMode(GameMode.ADVENTURE);
 
@@ -120,7 +120,7 @@ public class GameManager {
         // Ejecutar comandos para reiniciar el mapa inmediatamente
         MessageUtils.sendConsoleMessage("<yellow>Reiniciando el mapa del juego...");
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "/world world");
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "/schem loadall tumbado_suelo");
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "/schematic load tumbado_suelo.schem");
 
         Bukkit.getScheduler().runTaskLater(plugin, () -> {
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "/paste -o");
@@ -128,15 +128,15 @@ public class GameManager {
         }, 10L); // 0.5 segundos después
     }
 
-    private Player findOperator() {
-        // Buscar un jugador con permisos de operador
-        for (Player player : Bukkit.getOnlinePlayers()) {
-            if (player.isOp() || player.hasPermission("worldedit.schematic.load")) {
-                return player;
-            }
-        }
-        return null;
-    }
+    // private Player findOperator() {
+    // // Buscar un jugador con permisos de operador
+    // for (Player player : Bukkit.getOnlinePlayers()) {
+    // if (player.isOp() || player.hasPermission("worldedit.schematic.load")) {
+    // return player;
+    // }
+    // }
+    // return null;
+    // }
 
     public void setPlayerAsSpectator(Player player) {
         if (gameState == GameState.STOPPED || spectators.contains(player.getUniqueId())) {

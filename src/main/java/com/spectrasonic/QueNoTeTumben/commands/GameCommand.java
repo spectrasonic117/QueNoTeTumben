@@ -35,8 +35,17 @@ public class GameCommand extends BaseCommand {
         public void onStop(CommandSender sender) {
             Player player = (Player) sender;
             player.performCommand("id true");
+            player.getInventory().clear();
             gameManager.stopGame();
             MessageUtils.sendMessage(sender, "<red>El juego ha sido detenido.");
+        }
+
+        @Subcommand("resetmap")
+        @CommandPermission("quenotetumben.admin")
+        @Description("Reinicia el mapa del juego sin afectar el estado del juego")
+        public void onResetMap(CommandSender sender) {
+            gameManager.resetMap();
+            MessageUtils.sendMessage(sender, "<green>Reinicio del mapa iniciado.");
         }
     }
 
@@ -54,6 +63,7 @@ public class GameCommand extends BaseCommand {
         MessageUtils.sendMessage(sender, "<yellow>Comandos disponibles:");
         MessageUtils.sendMessage(sender, "<gray>/quenotetumben game start <green>- Inicia el minijuego");
         MessageUtils.sendMessage(sender, "<gray>/quenotetumben game stop <green>- Detiene el minijuego");
+        MessageUtils.sendMessage(sender, "<gray>/quenotetumben resetmap <green>- Reinicia el mapa");
         MessageUtils.sendMessage(sender, "<gray>/quenotetumben reload <green>- Recarga la configuración");
     }
 }

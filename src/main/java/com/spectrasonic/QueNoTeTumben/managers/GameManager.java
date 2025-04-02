@@ -113,10 +113,10 @@ public class GameManager {
             MessageUtils.broadcastTitle("<red><bold>GG", "", 1, 2, 1);
             MessageUtils.broadcastActionBar("<red>El juego ha terminado");
             SoundUtils.broadcastPlayerSound(Sound.ENTITY_ENDER_DRAGON_GROWL, 0.5f, 1.0f);
-        }, 60L);
+        }, 20L);
     }
 
-    private void resetMap() {
+    public void resetMap() {
         // Ejecutar comandos para reiniciar el mapa inmediatamente
         MessageUtils.sendConsoleMessage("<yellow>Reiniciando el mapa del juego...");
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "/world world");

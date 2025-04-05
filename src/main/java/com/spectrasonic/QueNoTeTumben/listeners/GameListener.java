@@ -1,18 +1,20 @@
 package com.spectrasonic.QueNoTeTumben.listeners;
 
-import com.spectrasonic.QueNoTeTumben.Main;
 import com.spectrasonic.QueNoTeTumben.managers.GameManager;
 import com.spectrasonic.QueNoTeTumben.models.GameState;
-import lombok.RequiredArgsConstructor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.GameMode;
 
-@RequiredArgsConstructor
 public class GameListener implements Listener {
 
     private final GameManager gameManager;
+
+    public GameListener(GameManager gameManager) {
+        this.gameManager = gameManager;
+    }
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
@@ -25,6 +27,11 @@ public class GameListener implements Listener {
 
         // Verificar si el jugador ya es espectador
         if (gameManager.isSpectator(player.getUniqueId())) {
+            return;
+        }
+
+        // Solo afectar a jugadores en modo SURVIVAL
+        if (player.getGameMode() != GameMode.SURVIVAL) {
             return;
         }
 

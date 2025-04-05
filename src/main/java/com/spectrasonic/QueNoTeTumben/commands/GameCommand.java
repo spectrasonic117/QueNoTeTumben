@@ -5,16 +5,19 @@ import co.aikar.commands.annotation.*;
 import com.spectrasonic.QueNoTeTumben.Main;
 import com.spectrasonic.QueNoTeTumben.Utils.MessageUtils;
 import com.spectrasonic.QueNoTeTumben.managers.GameManager;
-import lombok.RequiredArgsConstructor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandAlias("quenotetumben|qnt")
-@RequiredArgsConstructor
 public class GameCommand extends BaseCommand {
 
     private final Main plugin;
     private final GameManager gameManager;
+
+    public GameCommand(Main plugin, GameManager gameManager) {
+        this.plugin = plugin;
+        this.gameManager = gameManager;
+    }
 
     @Subcommand("game")
     @CommandPermission("quenotetumben.admin")

@@ -65,13 +65,15 @@ public class GameManager {
         gameState = GameState.RUNNING;
         spectators.clear();
 
-        // Dar pico a todos los jugadores y ponerlos en modo aventura
+        // Dar pico a todos los jugadores en modo aventura y cambiarlos a supervivencia
         ItemStack pickaxe = createGamePickaxe();
 
         for (Player player : Bukkit.getOnlinePlayers()) {
-            player.getInventory().addItem(pickaxe);
-            // player.teleport(teleportLocation);
-            player.setGameMode(GameMode.SURVIVAL);
+            if (player.getGameMode() == GameMode.ADVENTURE) {
+                player.getInventory().addItem(pickaxe);
+                // player.teleport(teleportLocation);
+                player.setGameMode(GameMode.SURVIVAL);
+            }
         }
 
         MessageUtils.broadcastTitle("<gold><bold>No te Caigas", "", 1, 2, 1);
@@ -93,24 +95,20 @@ public class GameManager {
         // Programar el resto de acciones para después de resetear el mapa (3 segundos =
         // 60 ticks)
         Bukkit.getScheduler().runTaskLater(plugin, () -> {
-            // Quitar picos y restaurar jugadores
+            // Quitar picos y restaurar jugadores solo a los que están en SPECTATOR o
+            // SURVIVAL
             for (Player player : Bukkit.getOnlinePlayers()) {
-                player.getInventory().remove(Material.DIAMOND_PICKAXE);
-                player.getInventory().remove(Material.END_STONE);
-                player.getInventory().remove(Material.SMOOTH_RED_SANDSTONE);
-                player.getInventory().remove(Material.NETHERRACK);
-                player.teleport(teleportLocation);
-                player.setGameMode(GameMode.ADVENTURE);
-
-                // Restaurar jugadores que eran espectadores
-                if (spectators.contains(player.getUniqueId())) {
+                if (player.getGameMode() == GameMode.SPECTATOR ||
+                        player.getGameMode() == GameMode.SURVIVAL) {
+                    player.getInventory().clear();
+                    player.teleport(teleportLocation);
                     player.setGameMode(GameMode.ADVENTURE);
                 }
             }
 
             spectators.clear();
 
-            MessageUtils.broadcastTitle("<red><bold>GG", "", 1, 2, 1);
+            // MessageUtils.broadcastTitle("<red><bold>GG", "", 1, 2, 1);
             MessageUtils.broadcastActionBar("<red>El juego ha terminado");
             SoundUtils.broadcastPlayerSound(Sound.ENTITY_ENDER_DRAGON_GROWL, 0.5f, 1.0f);
         }, 20L);
@@ -159,11 +157,11 @@ public class GameManager {
         // Mostrar título al jugador
         MessageUtils.sendTitle(player,
                 "<dark_red><bold>Te has caido",
-                "<gray>Ahora eres Espectador\n<red>¡Has perdido 1 punto!",
-                1, 3, 1);
+                "<red>¡Has perdido 1 punto!",
+                1, 2, 1);
 
         // Notificar a todos los jugadores
-        MessageUtils.sendBroadcastMessage("<yellow>" + player.getName() + " <red>se ha caido y ha perdido 1 punto");
+        MessageUtils.sendBroadcastMessage("<yellow>" + player.getName() + " <red>se ha caido");
         SoundUtils.broadcastPlayerSound(Sound.ENTITY_PLAYER_DEATH, 1.0f, 1.0f);
     }
 

@@ -9,7 +9,6 @@ import com.spectrasonic.QueNoTeTumben.models.GameState;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Sound;
@@ -172,7 +171,9 @@ public class GameManager {
                         "<yellow>¡Pero no te caigas tú!")
                 .addEnchantment("efficiency", 100)
                 .setFlag("HIDE_ENCHANTS")
-                .setUnbreakable(false)
+                .setFlag("HIDE_ATTRIBUTES")
+                .setUnbreakable(true)
+                .setCustomModelData(1)
                 .build();
     }
 

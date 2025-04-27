@@ -148,7 +148,7 @@ public class GameManager {
         }
 
         // Restar 1 punto al jugador
-        pointsManager.subtractPoints(player, 1);
+        pointsManager.subtractPoints(player, 10);
 
         player.setGameMode(GameMode.SPECTATOR);
         spectators.add(player.getUniqueId());
